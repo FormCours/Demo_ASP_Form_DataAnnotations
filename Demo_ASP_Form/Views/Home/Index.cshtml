@@ -1,0 +1,58 @@
+﻿@model Demo_ASP_Form.Models.Person
+
+@{
+   ViewBag.Title = "Home Page";
+}
+
+
+<h1>Un formulaire</h1>
+
+
+@using (Html.BeginForm("Index", "Home"))
+{
+   <div>
+      <label>Firstname :</label>
+      <input type="text" placeholder="John" name="Firstname" required value="@Model.Firstname" />
+
+      @Html.ValidationMessage("Firstname")
+   </div>
+
+   
+   @*<div>
+      <input type="text" placeholder="Smith" name="Lastname" value="@Model.Lastname"/>
+
+      @Html.Label("Nom : ")
+      @Html.TextBox("Lastname", Model.Lastname)
+
+      @Html.ValidationMessage("Lastname")
+   </div>*@
+
+   <div>
+      @*<input type="text" placeholder="Smith" name="Lastname" value="@Model.Lastname"/>*@
+
+      @Html.LabelFor(m => m.Lastname) :
+      @Html.TextBoxFor(m => m.Lastname)
+
+      @Html.ValidationMessageFor(m => m.Lastname)
+   </div>
+
+
+   <div>
+      @*<textarea name="Message" placeholder="Lorem ipsum..." style="resize: none;">@Model.Message</textarea>*@
+
+      @Html.Label("Message : ")
+      @Html.TextArea("Message", Model.Message, new { style = "resize:none;" })
+
+      @Html.ValidationMessage("Message")
+   </div>
+
+   <div>
+      <input type="submit" value="Valider" />
+   </div>
+}
+
+
+<div>
+   <h3>Affiche l'ensemble des erreurs du model (ModelState)</h3>
+   @Html.ValidationSummary()
+</div>
